@@ -46,8 +46,8 @@ public class BasketService : IBasketService
 
     public async Task<Result<Basket>> SetQuantities(int basketId, Dictionary<string, int> quantities)
     {
-        var basketSpec = new BasketWithItemsSpecification(basketId);
-        var basket = await _basketRepository.FirstOrDefaultAsync(basketSpec);
+        //var basketSpec = new BasketWithItemsSpecification(basketId);
+        var basket = await _basketRepository.FirstOrDefaultAsync(new BasketWithItemsSpecification(basketId));
         if (basket == null) return Result<Basket>.NotFound();
 
         foreach (var item in basket.Items)
